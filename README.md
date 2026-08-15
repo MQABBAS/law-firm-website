@@ -30,7 +30,7 @@ placeholder brand name** — swap it out for your real firm name before launch.
 | WhatsApp number | All pages (`wa.me` links) | `442079460958` |
 | Email address | All pages (`mailto:` links) | `info@meridianlegal.example` *(`.example` is a reserved placeholder domain)* |
 | Office address | Topbar, footer, `contact.html` map block | `123 Example Street, Manchester, M1 1AA` |
-| Team member names/photos | `about.html` | `Attorney Name` placeholders |
+| Team member names/photos | `about.html` | `Solicitor Name` placeholders |
 | Practice areas & copy | `index.html`, `practice-areas.html` | Generic 6-area starter set |
 | Google Analytics / tracking | not included | Add your own if needed |
 
