@@ -27,8 +27,14 @@
   <url>
     <loc>https://mqabbas.github.io/law-firm-website/guides/index.html</loc>
     <lastmod>2026-08-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mqabbas.github.io/law-firm-website/guides/adoption-law-uk.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mqabbas.github.io/law-firm-website/guides/boundary-and-neighbour-disputes-uk.html</loc>
@@ -73,6 +79,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mqabbas.github.io/law-firm-website/guides/criminal-injuries-compensation-cica-uk.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mqabbas.github.io/law-firm-website/guides/data-subject-access-requests-uk.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mqabbas.github.io/law-firm-website/guides/debt-recovery-for-uk-businesses.html</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
@@ -103,6 +121,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mqabbas.github.io/law-firm-website/guides/grandparents-rights-uk.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mqabbas.github.io/law-firm-website/guides/hmo-licensing-landlords-uk.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mqabbas.github.io/law-firm-website/guides/how-to-get-divorced-in-the-uk.html</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
@@ -116,6 +146,12 @@
   </url>
   <url>
     <loc>https://mqabbas.github.io/law-firm-website/guides/inheritance-tax-uk-guide.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mqabbas.github.io/law-firm-website/guides/insolvency-company-liquidation-uk.html</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -170,6 +206,12 @@
   </url>
   <url>
     <loc>https://mqabbas.github.io/law-firm-website/guides/non-disclosure-agreements-uk.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mqabbas.github.io/law-firm-website/guides/partnership-llp-disputes-uk.html</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -235,6 +277,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mqabbas.github.io/law-firm-website/guides/trusts-explained-uk.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mqabbas.github.io/law-firm-website/guides/tupe-transfers-explained-uk.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mqabbas.github.io/law-firm-website/guides/uk-conveyancing-process-explained.html</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
@@ -266,6 +320,12 @@
   </url>
   <url>
     <loc>https://mqabbas.github.io/law-firm-website/guides/workplace-discrimination-uk.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mqabbas.github.io/law-firm-website/guides/zero-hours-contracts-rights-uk.html</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
