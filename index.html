@@ -73,48 +73,6 @@
     .topbar { display: none; }
   }
 
-  /* Stylised, animated logo lockup */
-  .brand-index { align-items: center; gap: 12px; }
-  .brand-text-group { display: flex; flex-direction: column; line-height: 1.08; }
-  .brand-primary {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.7rem;
-    letter-spacing: 0.01em;
-    background: linear-gradient(120deg, var(--gold-500) 0%, var(--gold-400) 25%, #fff6dc 50%, var(--gold-400) 75%, var(--gold-500) 100%);
-    background-size: 250% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: goldShimmer 4s ease-in-out infinite;
-  }
-  .brand-secondary {
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--navy-800);
-    margin-top: -1px;
-  }
-  .brand-tagline {
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold-500);
-    margin-top: 3px;
-  }
-  @keyframes goldShimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-  @media (max-width: 480px) {
-    .brand-primary { font-size: 1.4rem; }
-    .brand-secondary { font-size: 0.62rem; }
-  }
-
   /* Hero entrance animation + "who we are" badge */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   .hero-badge-pill {
@@ -143,33 +101,33 @@
   /* On mobile: headline/badge/CTA block first, "Request a callback" card after */
   @media (max-width: 700px) {
     .hero .hero-card { order: 0; }
-  }
-
-  /* Animated scales-of-justice icon beside the "Lexent" wordmark */
-  .brand-name-row { display: inline-flex; align-items: center; gap: 7px; }
-  .scale-icon {
-    color: var(--gold-400);
-    flex-shrink: 0;
-    transform-origin: 50% 12%;
-    animation: scaleSway 3.2s ease-in-out infinite;
-    filter: drop-shadow(0 0 5px rgba(204,163,95,0.5));
-  }
-  @keyframes scaleSway {
-    0%, 100% { transform: rotate(-11deg); }
-    50%      { transform: rotate(11deg); }
-  }
-  @media (max-width: 480px) {
-    .scale-icon { width: 16px; height: 16px; }
+    /* Pull the IAA-regulated badge (and everything below it) up, closer to the nav bar */
+    .hero { padding-top: 30px; }
+    .hero-badge-pill { margin-bottom: 14px; }
   }
 
   /* Typewriter headline */
-  #hero-headline {
+  #hero-headline { min-height: 2.4em; }
+  #hero-headline .typed-text {
+    display: inline-block;
     border-right: 3px solid var(--gold-400);
-    padding-right: 6px;
-    animation: fadeUp 0.9s ease 0.1s both, cursorBlink 0.85s step-end infinite;
-    min-height: 1.1em;
+    padding-right: 4px;
+    animation: cursorBlink 0.85s step-end infinite;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
   }
   @keyframes cursorBlink { 50% { border-color: transparent; } }
+
+  /* While erasing a phrase: the text glows gold and the cursor holds solid */
+  #hero-headline .typed-text.is-deleting {
+    color: var(--gold-100);
+    text-shadow: 0 0 14px rgba(204, 163, 95, 0.65);
+    animation: cursorBlink 0.85s step-end infinite, eraseFlicker 0.3s ease-in-out infinite;
+    border-color: var(--gold-100);
+  }
+  @keyframes eraseFlicker {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.86; }
+  }
 </style>
 </head>
 <body>
@@ -245,7 +203,7 @@
   <div class="container hero-grid">
     <div>
       <div class="hero-badge-pill"><span class="dot"></span> IAA-Regulated Immigration &amp; Asylum Advisers</div>
-      <h1 id="hero-headline">Trusted immigration &amp; asylum advice, when it matters most.</h1>
+      <h1 id="hero-headline"><span class="typed-text">Trusted immigration &amp; asylum advice, when it matters most.</span></h1>
       <p class="lead">Lexent Law Chamber is an IAA-regulated immigration and asylum advice practice, helping individuals and families across England &amp; Wales navigate visa applications, asylum claims and appeals with clarity, care and dedicated representation.</p>
       <div class="hero-actions">
         <a href="contact.html#book" class="btn btn-primary btn-lg">Book a Free Consultation</a>
@@ -635,7 +593,8 @@
 <script src="js/main.js"></script>
 <script>
 (function () {
-  var el = document.getElementById('hero-headline');
+  var heading = document.getElementById('hero-headline');
+  var el = heading ? heading.querySelector('.typed-text') : null;
   if (!el) return;
 
   var phrases = [
@@ -664,6 +623,7 @@
     var current = phrases[phraseIndex];
 
     if (!deleting) {
+      el.classList.remove('is-deleting');
       charIndex++;
       el.textContent = current.slice(0, charIndex);
       if (charIndex === current.length) {
@@ -673,10 +633,12 @@
       return setTimeout(tick, typeSpeed);
     }
 
+    el.classList.add('is-deleting');
     charIndex--;
     el.textContent = current.slice(0, charIndex);
     if (charIndex === 0) {
       deleting = false;
+      el.classList.remove('is-deleting');
       phraseIndex = (phraseIndex + 1) % phrases.length;
       return setTimeout(tick, gapTime);
     }
