@@ -1,5 +1,5 @@
 /* =========================================================
-   Meridian Legal — Site scripts
+   Lexent Law Chamber — Site scripts
    Mobile nav, header shadow, FAQ accordion, back-to-top,
    and booking form handling.
    ========================================================= */
@@ -125,7 +125,7 @@
         return;
       }
 
-      var firmEmail = "info@meridianlegal.example";
+      var firmEmail = "info@lexentlawchamber.example";
       var subject = "New consultation request from " + name;
       var bodyLines = [
         "Name: " + name,
@@ -159,4 +159,44 @@
   document.querySelectorAll(".current-year").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+
+  /* ---------- Cookie consent banner ----------
+     Simple "essential cookies only" style notice. Stores the visitor's
+     choice in localStorage so it isn't shown again. No cookies are
+     actually set by this template beyond what the browser itself uses
+     for localStorage — wire this up to your real cookie/analytics
+     setup before adding any tracking scripts. */
+  var COOKIE_KEY = "ml-cookie-consent";
+  try {
+    if (!window.localStorage.getItem(COOKIE_KEY)) {
+      var banner = document.createElement("div");
+      banner.className = "cookie-banner";
+      banner.setAttribute("role", "dialog");
+      banner.setAttribute("aria-label", "Cookie notice");
+      banner.innerHTML =
+        '<p>We use only essential cookies to make this site work. See our ' +
+        '<a href="cookie-policy.html">Cookie Policy</a> for details.</p>' +
+        '<div class="cookie-actions">' +
+        '<button type="button" class="btn btn-outline btn-sm" data-cookie-choice="essential" style="color:#fff;border-color:rgba(255,255,255,0.5);">Essential only</button>' +
+        '<button type="button" class="btn btn-primary btn-sm" data-cookie-choice="accepted">Accept</button>' +
+        '</div>';
+      document.body.appendChild(banner);
+
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { banner.classList.add("show"); });
+      });
+
+      banner.querySelectorAll("[data-cookie-choice]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          try {
+            window.localStorage.setItem(COOKIE_KEY, btn.getAttribute("data-cookie-choice"));
+          } catch (e) { /* ignore storage errors */ }
+          banner.classList.remove("show");
+          setTimeout(function () { banner.remove(); }, 350);
+        });
+      });
+    }
+  } catch (e) {
+    /* localStorage unavailable (private browsing etc.) — skip banner */
+  }
 })();

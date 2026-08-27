@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /privacy-policy.html
+Disallow: /terms-of-use.html
+Disallow: /cookie-policy.html
+Disallow: /complaints-procedure.html
+
+Sitemap: https://mqabbas.github.io/law-firm-website/sitemap.xml
