@@ -173,6 +173,16 @@ section { padding: 88px 0; }
   font-family: var(--font-heading);
   flex-shrink: 0;
 }
+.brand-mark-img {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
+}
+@media (max-width: 480px) {
+  .brand-mark-img { width: 36px; height: 36px; }
+}
 .brand small {
   display: block;
   font-family: var(--font-body);
