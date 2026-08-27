@@ -1,5 +1,5 @@
 /* =========================================================
-   Meridian Legal — Site scripts
+   Lexent Law Chamber — Site scripts
    Mobile nav, header shadow, FAQ accordion, back-to-top,
    and booking form handling.
    ========================================================= */
@@ -125,7 +125,7 @@
         return;
       }
 
-      var firmEmail = "info@meridianlegal.example";
+      var firmEmail = "info@lexentlawchamber.example";
       var subject = "New consultation request from " + name;
       var bodyLines = [
         "Name: " + name,
@@ -169,16 +169,13 @@
   var COOKIE_KEY = "ml-cookie-consent";
   try {
     if (!window.localStorage.getItem(COOKIE_KEY)) {
-      var inGuides = window.location.pathname.indexOf("/guides/") !== -1;
-      var prefix = inGuides ? "../" : "";
-
       var banner = document.createElement("div");
       banner.className = "cookie-banner";
       banner.setAttribute("role", "dialog");
       banner.setAttribute("aria-label", "Cookie notice");
       banner.innerHTML =
         '<p>We use only essential cookies to make this site work. See our ' +
-        '<a href="' + prefix + 'cookie-policy.html">Cookie Policy</a> for details.</p>' +
+        '<a href="cookie-policy.html">Cookie Policy</a> for details.</p>' +
         '<div class="cookie-actions">' +
         '<button type="button" class="btn btn-outline btn-sm" data-cookie-choice="essential" style="color:#fff;border-color:rgba(255,255,255,0.5);">Essential only</button>' +
         '<button type="button" class="btn btn-primary btn-sm" data-cookie-choice="accepted">Accept</button>' +
