@@ -183,6 +183,61 @@ section { padding: 88px 0; }
   color: var(--text-muted);
 }
 
+/* ---------- Stylised, animated logo lockup — shared across every page ---------- */
+.brand-index { align-items: center; gap: 12px; }
+.brand-text-group { display: flex; flex-direction: column; line-height: 1.08; }
+.brand-name-row { display: inline-flex; align-items: center; gap: 7px; }
+.brand-primary {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.7rem;
+  letter-spacing: 0.01em;
+  background: linear-gradient(120deg, var(--gold-500) 0%, var(--gold-400) 25%, #fff6dc 50%, var(--gold-400) 75%, var(--gold-500) 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 4s ease-in-out infinite;
+}
+.brand-secondary {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--navy-800);
+  margin-top: -1px;
+}
+.brand-tagline {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-500);
+  margin-top: 3px;
+}
+.scale-icon {
+  color: var(--gold-400);
+  flex-shrink: 0;
+  transform-origin: 50% 12%;
+  animation: scaleSway 3.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px rgba(204,163,95,0.5));
+}
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes scaleSway {
+  0%, 100% { transform: rotate(-11deg); }
+  50%      { transform: rotate(11deg); }
+}
+@media (max-width: 480px) {
+  .brand-primary { font-size: 1.4rem; }
+  .brand-secondary { font-size: 0.62rem; }
+  .scale-icon { width: 16px; height: 16px; }
+}
+
 .main-nav ul { display: flex; gap: 2px; align-items: center; }
 .main-nav a {
   color: var(--navy-900);
