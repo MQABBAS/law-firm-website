@@ -107,9 +107,13 @@
   }
 
   /* Typewriter headline */
-  #hero-headline { min-height: 2.4em; }
+  #hero-headline {
+    min-height: 2.4em; /* fallback floor before JS measures the real max height */
+  }
   #hero-headline .typed-text {
-    display: inline-block;
+    /* Stays a normal inline run (not inline-block) so wrapped multi-line text
+       still gets its border-right on the last line, right after the last
+       character — an inline-block would draw it at the widest line's edge. */
     border-right: 3px solid var(--gold-400);
     padding-right: 4px;
     animation: cursorBlink 0.85s step-end infinite;
@@ -610,6 +614,27 @@
     el.textContent = phrases[0];
     return;
   }
+
+  // Reserve enough height for the tallest phrase at the current viewport width,
+  // so the page never shifts as shorter/longer phrases wrap to fewer/more lines.
+  function lockHeight() {
+    var previous = el.textContent;
+    heading.style.minHeight = '0px';
+    var max = 0;
+    for (var i = 0; i < phrases.length; i++) {
+      el.textContent = phrases[i];
+      max = Math.max(max, heading.getBoundingClientRect().height);
+    }
+    heading.style.minHeight = max + 'px';
+    el.textContent = previous;
+  }
+
+  lockHeight();
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(lockHeight, 200);
+  });
 
   var phraseIndex = 0;
   var charIndex = 0;
