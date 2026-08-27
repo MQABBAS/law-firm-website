@@ -903,3 +903,39 @@ section { padding: 88px 0; }
   .cookie-banner .cookie-actions { justify-content: stretch; }
   .cookie-banner .cookie-actions .btn { flex: 1; }
 }
+
+/* ---------- Site credit (SQ Websites) — shared across every page ---------- */
+.dev-credit {
+  text-align: center;
+  padding: 22px 20px 28px;
+  background: var(--navy-900);
+  border-top: 1px solid rgba(204, 163, 95, 0.2);
+}
+.dev-credit .sq-mark {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  text-decoration: none;
+  background: linear-gradient(120deg, var(--gold-500) 0%, var(--gold-400) 25%, #fff8e2 50%, var(--gold-400) 75%, var(--gold-500) 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: sqGoldShimmer 3.5s ease-in-out infinite, sqGlowPulse 2.4s ease-in-out infinite;
+}
+.dev-credit .credit-line {
+  display: block; margin-top: 4px;
+  font-size: 0.72rem; letter-spacing: 0.06em; color: var(--gray-400);
+}
+.dev-credit .credit-line a { color: var(--gold-400); text-decoration: none; }
+.dev-credit .credit-line a:hover { text-decoration: underline; }
+@keyframes sqGoldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes sqGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(204, 163, 95, 0.5)) drop-shadow(0 0 22px rgba(204, 163, 95, 0.25)); }
+  50%      { filter: drop-shadow(0 0 22px rgba(204, 163, 95, 0.85)) drop-shadow(0 0 44px rgba(204, 163, 95, 0.5)); }
+}
