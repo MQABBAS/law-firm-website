@@ -125,7 +125,7 @@
         return;
       }
 
-      var firmEmail = "info@lexentlawchamber.example";
+      var firmEmail = "lexentlawchamber@gmail.com";
       var subject = "New consultation request from " + name;
       var bodyLines = [
         "Name: " + name,
@@ -198,5 +198,46 @@
     }
   } catch (e) {
     /* localStorage unavailable (private browsing etc.) — skip banner */
+  }
+
+  /* ---------- Scroll-reveal animations ----------
+     Tags a curated set of content blocks with .reveal and fades/
+     slides each into place the first time it enters the viewport,
+     with a small stagger between siblings. Respects
+     prefers-reduced-motion (the matching CSS rule shows everything
+     at full opacity immediately in that case, so we skip the JS
+     entirely rather than fight it). */
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotion) {
+    var revealTargets = document.querySelectorAll(
+      ".section-head, .pa-card, .team-card, .step, .faq-item, .split > div, .cta-banner"
+    );
+
+    if (revealTargets.length) {
+      if ("IntersectionObserver" in window) {
+        var staggerCounts = new Map();
+        revealTargets.forEach(function (el) {
+          el.classList.add("reveal");
+          var parent = el.parentElement;
+          var i = staggerCounts.get(parent) || 0;
+          el.style.transitionDelay = Math.min(i * 70, 350) + "ms";
+          staggerCounts.set(parent, i + 1);
+        });
+
+        var revealObserver = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+        revealTargets.forEach(function (el) { revealObserver.observe(el); });
+      } else {
+        // No IntersectionObserver support — just show everything.
+        revealTargets.forEach(function (el) { el.classList.add("reveal", "is-visible"); });
+      }
+    }
   }
 })();

@@ -373,7 +373,7 @@ section { padding: 88px 0; }
   padding: 32px 28px;
   transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
-.pa-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-color: transparent; }
+.pa-card:hover, .pa-card.reveal:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-color: transparent; }
 .pa-card .icon {
   width: 54px;
   height: 54px;
@@ -513,7 +513,9 @@ section { padding: 88px 0; }
   border-radius: var(--radius-md);
   overflow: hidden;
   text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
+.team-card:hover, .team-card.reveal:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
 .team-photo {
   height: 220px;
   background: linear-gradient(150deg, var(--navy-800), var(--navy-600));
@@ -528,11 +530,23 @@ section { padding: 88px 0; }
 
 /* ---------- Page header (inner pages) ---------- */
 .page-header {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
   color: var(--white);
   padding: 64px 0 56px;
   text-align: center;
 }
+.page-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 85% 15%, rgba(204, 163, 95, 0.18), transparent 45%),
+    radial-gradient(circle at 8% 85%, rgba(204, 163, 95, 0.12), transparent 40%);
+  pointer-events: none;
+}
+.page-header .container { position: relative; }
 .page-header h1 { color: var(--white); margin-bottom: 10px; font-size: clamp(1.9rem, 3.6vw, 2.6rem); }
 .breadcrumb { font-size: 0.85rem; color: var(--gray-400); }
 .breadcrumb a { color: var(--gray-200); }
@@ -1003,4 +1017,37 @@ section { padding: 88px 0; }
 @keyframes sqGlowPulse {
   0%, 100% { filter: drop-shadow(0 0 10px rgba(204, 163, 95, 0.5)) drop-shadow(0 0 22px rgba(204, 163, 95, 0.25)); }
   50%      { filter: drop-shadow(0 0 22px rgba(204, 163, 95, 0.85)) drop-shadow(0 0 44px rgba(204, 163, 95, 0.5)); }
+}
+
+/* ---------- Logo hover polish (shared across every page) ---------- */
+.brand-mark-img { transition: transform 0.3s ease, filter 0.3s ease; }
+.brand:hover .brand-mark-img { transform: scale(1.06); filter: drop-shadow(0 0 10px rgba(204, 163, 95, 0.45)); }
+
+/* ---------- CTA banner: subtle ambient glow ---------- */
+.cta-banner { position: relative; overflow: hidden; }
+.cta-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 80% 20%, rgba(204, 163, 95, 0.16), transparent 50%);
+  animation: ctaGlowShift 6s ease-in-out infinite;
+  pointer-events: none;
+}
+.cta-banner > * { position: relative; }
+@keyframes ctaGlowShift {
+  0%, 100% { opacity: 0.6; transform: translateX(0); }
+  50%      { opacity: 1; transform: translateX(-20px); }
+}
+
+/* ---------- Scroll-reveal animation system (shared across every page) ----------
+   JS (main.js) tags qualifying elements with .reveal and toggles
+   .is-visible via IntersectionObserver as they enter the viewport. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .cta-banner::before { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; }
 }
