@@ -106,8 +106,58 @@
   .hero h1 { animation: fadeUp 0.9s ease 0.1s both; }
   .hero .lead { animation: fadeUp 0.9s ease 0.2s both; }
   .hero .hero-actions { animation: fadeUp 0.9s ease 0.3s both; }
-  .hero .hero-trust { animation: fadeUp 0.9s ease 0.4s both; }
+  .hero .situation-finder { animation: fadeUp 0.9s ease 0.4s both; }
+  .hero .hero-trust { animation: fadeUp 0.9s ease 0.45s both; }
   .hero .hero-card { animation: fadeUp 0.9s ease 0.5s both; }
+
+  /* "Tell us your situation" finder */
+  .situation-finder {
+    margin: 26px 0 30px;
+    padding: 20px 22px;
+    border: 1px solid rgba(204, 163, 95, 0.35);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.045);
+    backdrop-filter: blur(6px);
+  }
+  .situation-finder-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gold-100);
+    margin-bottom: 12px;
+  }
+  .situation-finder-form { display: flex; gap: 10px; flex-wrap: wrap; }
+  .situation-finder-form input {
+    flex: 1 1 220px;
+    min-width: 0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 0.92rem;
+    font-family: inherit;
+  }
+  .situation-finder-form input::placeholder { color: rgba(255, 255, 255, 0.5); }
+  .situation-finder-form input:focus {
+    outline: none;
+    border-color: var(--gold-400);
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .situation-results { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .situation-results[hidden] { display: none; }
+  .situation-result-item {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    padding: 12px 16px; border-radius: 8px;
+    background: rgba(204, 163, 95, 0.1); border: 1px solid rgba(204, 163, 95, 0.3);
+  }
+  .situation-result-item .topic { font-weight: 600; color: #fff; font-size: 0.9rem; }
+  .situation-result-item .links { display: flex; gap: 14px; flex-wrap: wrap; }
+  .situation-result-item .links a { font-size: 0.82rem; color: var(--gold-400); text-decoration: underline; }
+  .situation-no-match { padding: 14px 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.85); font-size: 0.88rem; line-height: 1.6; }
+  .situation-no-match a { color: var(--gold-400); text-decoration: underline; }
+  .situation-cta { margin-top: 2px; }
+  .situation-note { margin-top: 12px; font-size: 0.74rem; color: rgba(255, 255, 255, 0.5); }
 
   /* On mobile: headline/badge/CTA block first, "Request a callback" card after */
   @media (max-width: 700px) {
@@ -224,6 +274,17 @@
         <a href="contact.html#book" class="btn btn-primary btn-lg">Book a Free Consultation</a>
         <a href="tel:+447438306740" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.6);">Call Us Now</a>
       </div>
+
+      <div class="situation-finder">
+        <label for="situation-input" class="situation-finder-label">Not sure where to start? Tell us what's going on:</label>
+        <form id="situation-form" class="situation-finder-form">
+          <input type="text" id="situation-input" name="situation" autocomplete="off" placeholder="e.g. &quot;my spouse visa was refused&quot; or &quot;I need to claim asylum&quot;" />
+          <button type="submit" class="btn btn-primary">Find Help</button>
+        </form>
+        <div id="situation-results" class="situation-results" aria-live="polite" hidden></div>
+        <p class="situation-note">Nothing you type is stored or sent anywhere — matching happens instantly in your browser.</p>
+      </div>
+
       <div class="hero-trust">
         <div>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -689,6 +750,137 @@
     deleting = true;
     tick();
   }, holdTime);
+})();
+</script>
+<script>
+(function () {
+  var form = document.getElementById('situation-form');
+  var input = document.getElementById('situation-input');
+  var resultsBox = document.getElementById('situation-results');
+  if (!form || !input || !resultsBox) return;
+
+  /* Matches free-text descriptions of a situation to the most relevant
+     guide + practice-area section. Pure keyword scoring, entirely
+     client-side — nothing typed here is ever sent anywhere. This is a
+     content router, not an advice tool: it always ends with a link to
+     book a real consultation, and never tells anyone what to do. */
+  var topics = [
+    {
+      label: 'Asylum & Protection Claims',
+      guide: 'guides/how-to-claim-asylum-in-the-uk.html',
+      practiceArea: 'practice-areas.html#asylum-claims',
+      keywords: ['asylum', 'refugee', 'persecution', 'protection claim', 'flee', 'fleeing', 'unsafe', 'in danger', 'screening interview', 'claim asylum', 'scared to go home', 'seeking protection']
+    },
+    {
+      label: 'Human Rights (Article 8) Claims',
+      guide: 'guides/human-rights-article-8-immigration-claims.html',
+      practiceArea: 'practice-areas.html#asylum-claims',
+      keywords: ['article 8', 'human rights', 'family life', 'private life', 'keep my family together', 'split up my family']
+    },
+    {
+      label: 'Spouse & Partner Visas',
+      guide: 'guides/spouse-partner-visa-requirements-uk.html',
+      practiceArea: 'practice-areas.html#family-visas',
+      keywords: ['spouse visa', 'partner visa', 'my wife', 'my husband', 'fiance', 'fiancé', 'marriage visa', 'bring my wife', 'bring my husband', 'married', 'engaged', 'partner in the uk']
+    },
+    {
+      label: 'Skilled Worker & Business Visas',
+      guide: 'guides/skilled-worker-visa-sponsorship-explained.html',
+      practiceArea: 'practice-areas.html#work-visas',
+      keywords: ['work visa', 'job offer', 'sponsor licence', 'sponsorship', 'skilled worker', 'employer sponsor', 'certificate of sponsorship']
+    },
+    {
+      label: 'Visa Refusals & Appeals',
+      guide: 'guides/first-tier-tribunal-immigration-appeals-explained.html',
+      practiceArea: 'practice-areas.html#appeals',
+      keywords: ['appeal', 'refused', 'refusal', 'rejected', 'denied', 'tribunal', 'turned down', 'visa refused', 'application refused']
+    },
+    {
+      label: 'Judicial Review',
+      guide: 'guides/judicial-review-immigration-cases-uk.html',
+      practiceArea: 'practice-areas.html#judicial-review',
+      keywords: ['judicial review', 'challenge the decision', 'home office got it wrong', 'unlawful decision']
+    },
+    {
+      label: 'Settlement & Indefinite Leave to Remain',
+      guide: 'guides/indefinite-leave-to-remain-ilr-uk.html',
+      practiceArea: 'practice-areas.html#settlement',
+      keywords: ['ilr', 'indefinite leave', 'settle in the uk', 'settlement', '5 years', 'ten years', '10 years', 'permanent residence', 'long residence']
+    },
+    {
+      label: 'British Citizenship',
+      guide: 'guides/british-citizenship-good-character-requirement.html',
+      practiceArea: 'practice-areas.html#settlement',
+      keywords: ['citizenship', 'naturalise', 'naturalize', 'british passport', 'become british', 'good character']
+    },
+    {
+      label: 'Immigration Bail & Detention',
+      guide: 'guides/immigration-bail-detention-rights-uk.html',
+      practiceArea: 'practice-areas.html#deportation',
+      keywords: ['detained', 'detention', 'immigration bail', 'removal centre', 'deport', 'deportation', 'removal directions', 'being removed']
+    },
+    {
+      label: 'Right to Work Checks (Employers)',
+      guide: 'guides/right-to-work-checks-uk-employers.html',
+      practiceArea: 'practice-areas.html#work-visas',
+      keywords: ['right to work check', 'hiring someone', 'employer check', 'employee visa status', 'illegal working']
+    }
+  ];
+
+  function findMatches(text) {
+    var lower = text.toLowerCase();
+    var scored = topics
+      .map(function (topic) {
+        var score = topic.keywords.reduce(function (acc, kw) {
+          return acc + (lower.indexOf(kw) !== -1 ? 1 : 0);
+        }, 0);
+        return { topic: topic, score: score };
+      })
+      .filter(function (s) { return s.score > 0; });
+    scored.sort(function (a, b) { return b.score - a.score; });
+    return scored.slice(0, 3).map(function (s) { return s.topic; });
+  }
+
+  function renderNoInput() {
+    resultsBox.innerHTML = '<div class="situation-no-match">Type a few words about your situation above and we’ll point you to the most relevant guidance.</div>';
+  }
+
+  function renderNoMatch() {
+    resultsBox.innerHTML =
+      '<div class="situation-no-match">We couldn’t find an exact match — that doesn’t mean we can’t help. ' +
+      '<a href="guides/index.html">Browse all guides</a> or <a href="contact.html#book">book a free consultation</a> and tell us directly.</div>';
+  }
+
+  function renderMatches(matches) {
+    resultsBox.innerHTML = '';
+    matches.forEach(function (topic) {
+      var item = document.createElement('div');
+      item.className = 'situation-result-item';
+      item.innerHTML =
+        '<span class="topic">' + topic.label + '</span>' +
+        '<span class="links">' +
+        '<a href="' + topic.guide + '">Read the guide</a>' +
+        '<a href="' + topic.practiceArea + '">Our service</a>' +
+        '</span>';
+      resultsBox.appendChild(item);
+    });
+    var cta = document.createElement('div');
+    cta.className = 'situation-cta';
+    cta.innerHTML = '<a href="contact.html#book" class="btn btn-primary btn-sm">Not quite right? Book a free consultation</a>';
+    resultsBox.appendChild(cta);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    resultsBox.hidden = false;
+
+    var text = input.value.trim();
+    if (!text) { renderNoInput(); return; }
+
+    var matches = findMatches(text);
+    if (!matches.length) { renderNoMatch(); return; }
+    renderMatches(matches);
+  });
 })();
 </script>
 </body>
