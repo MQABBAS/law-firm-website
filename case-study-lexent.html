@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Case study: how SQ Website's Mohammed Qaim Abbas designed and built Lexent Law Chamber — a fully regulated-industry-ready immigration & asylum advice website with custom animation, SEO and a live UK domain.">
+<title>Case Study: Lexent Law Chamber | SQ Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+:root {
+  --gold: #C9A84C; --gold-light: #F2DC94; --gold-bright: #FFE680;
+  --gold-dark: #8B6914; --gold-deep: #5C4309;
+  --gold-glow: rgba(201,168,76,.35); --gold-subtle: rgba(201,168,76,.07); --gold-border: rgba(201,168,76,.2);
+  --bg-solid: #060604; --bg2: #0a0908; --bg3: #0e0d0b;
+  --white: #F7F4EE; --grey: #726f67; --grey-light: #9b9890;
+  --radius: 2px; --radius-lg: 6px;
+  --navy: #0b1d33;
+}
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg-solid); color:var(--white); font-family:'Outfit',sans-serif; overflow-x:hidden; line-height:1.6; }
+img { max-width:100%; display:block; }
+a { color:var(--gold); text-decoration:none; }
+.container { max-width:1100px; margin:0 auto; padding:0 6%; }
+section { padding:100px 0; }
+.section-bg2 { background:var(--bg2); }
+
+.eyebrow { display:flex; align-items:center; gap:14px; font-size:.68rem; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+.eyebrow::before { content:''; width:32px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); }
+h1,h2,h3,h4 { font-family:'Playfair Display',serif; font-weight:700; line-height:1.15; }
+.gold-text {
+  background:linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 30%, var(--gold-light) 55%, var(--gold-bright) 65%, var(--gold-light) 75%, var(--gold) 90%, var(--gold-dark) 100%);
+  background-size:250% 250%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  animation:goldShimmer 4s ease-in-out infinite;
+}
+@keyframes goldShimmer { 0%,100% { background-position:0% 50%; } 50% { background-position:100% 50%; } }
+
+/* nav */
+#navbar { position:sticky; top:0; z-index:100; padding:18px 6%; display:flex; align-items:center; justify-content:space-between; background:rgba(6,6,4,.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--gold-border); }
+.logo-sq { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; display:inline-flex; align-items:center; gap:4px; }
+.logo-sq .sq-letter { background:linear-gradient(145deg,var(--gold-dark),var(--gold),var(--gold-light),var(--gold)); background-size:300% 300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:goldShimmer 3.5s ease-in-out infinite; }
+.logo-sq .sq-dot { width:5px; height:5px; background:var(--gold); border-radius:50%; box-shadow:0 0 10px var(--gold); }
+.nav-back { font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--grey-light); display:flex; align-items:center; gap:8px; transition:color .25s; }
+.nav-back:hover { color:var(--gold); }
+
+/* hero */
+.hero { min-height:70vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; padding:120px 6% 80px; overflow:hidden; }
+.hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 20%, rgba(201,168,76,.1) 0%, transparent 60%); pointer-events:none; }
+.hero-content { position:relative; z-index:2; max-width:820px; margin:0 auto; }
+.hero-badge { display:inline-flex; align-items:center; gap:9px; border:1px solid var(--gold-border); padding:7px 22px; border-radius:100px; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:28px; background:var(--gold-subtle); }
+.hero h1 { font-size:clamp(2.4rem,5.5vw,4.2rem); margin-bottom:22px; letter-spacing:-.02em; }
+.hero-sub { font-size:1.05rem; color:var(--grey-light); max-width:620px; margin:0 auto 40px; font-weight:300; }
+.hero-meta { display:flex; gap:40px; justify-content:center; flex-wrap:wrap; margin-top:56px; padding-top:40px; border-top:1px solid var(--gold-border); }
+.meta-item .meta-label { font-size:.65rem; letter-spacing:.16em; text-transform:uppercase; color:var(--grey); margin-bottom:6px; }
+.meta-item .meta-value { font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--gold-light); }
+
+/* preview frame */
+.site-preview { border:1px solid var(--gold-border); border-radius:var(--radius-lg); overflow:hidden; background:var(--navy); margin:0 auto; max-width:900px; box-shadow:0 30px 80px rgba(0,0,0,.5), 0 0 60px rgba(201,168,76,.08); }
+.preview-chrome { display:flex; gap:6px; padding:12px 16px; background:#0a0908; border-bottom:1px solid var(--gold-border); }
+.preview-chrome span { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.15); }
+.preview-body { padding:46px 30px; text-align:center; background:linear-gradient(135deg,var(--navy),#17335c); }
+.preview-logo { display:inline-flex; flex-direction:column; align-items:center; gap:4px; margin-bottom:18px; }
+.preview-logo .name { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; background:linear-gradient(120deg,#b98a3e,#cca35f,#fff6dc,#cca35f,#b98a3e); background-size:250% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.preview-logo .sub { font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:#dde1e6; }
+.preview-body h3 { color:#fff; font-size:1.5rem; margin-bottom:10px; }
+.preview-body p { color:#dde1e6; font-size:.85rem; max-width:480px; margin:0 auto; font-weight:300; }
+
+/* cards */
+.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+.grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:48px; }
+@media(max-width:860px){ .grid-3, .grid-2 { grid-template-columns:1fr; } }
+.feature-card { background:rgba(255,255,255,.022); border:1px solid var(--gold-border); border-radius:var(--radius-lg); padding:32px 28px; transition:transform .35s, box-shadow .35s, border-color .35s; }
+.feature-card:hover { transform:translateY(-6px); border-color:rgba(201,168,76,.4); box-shadow:0 20px 50px rgba(0,0,0,.4); }
+.feature-card .icon { width:46px; height:46px; background:linear-gradient(135deg,var(--gold-dark),var(--gold)); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin-bottom:20px; color:var(--bg-solid); }
+.feature-card h4 { font-size:1.05rem; margin-bottom:10px; }
+.feature-card p { color:var(--grey-light); font-size:.86rem; font-weight:300; line-height:1.8; }
+
+.s-title { font-size:clamp(1.9rem,4vw,2.8rem); margin-bottom:16px; letter-spacing:-.02em; }
+.s-body { color:var(--grey-light); font-size:.95rem; line-height:1.9; font-weight:300; max-width:640px; }
+
+/* pull quote */
+.pull-quote { border-left:2px solid var(--gold); padding:8px 0 8px 30px; margin:48px 0; }
+.pull-quote p { font-family:'Playfair Display',serif; font-style:italic; font-size:1.3rem; color:var(--white); line-height:1.6; }
+.pull-quote cite { display:block; margin-top:14px; font-family:'Outfit',sans-serif; font-style:normal; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
+
+/* timeline */
+.timeline { margin-top:40px; }
+.tl-item { display:flex; gap:24px; padding-bottom:32px; position:relative; }
+.tl-item::before { content:''; position:absolute; left:9px; top:24px; bottom:0; width:1px; background:var(--gold-border); }
+.tl-item:last-child::before { display:none; }
+.tl-dot { width:19px; height:19px; border-radius:50%; border:1.5px solid var(--gold); background:var(--bg-solid); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.tl-dot::after { content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); }
+.tl-body h4 { font-size:.98rem; margin-bottom:6px; color:var(--gold-light); }
+.tl-body p { color:var(--grey-light); font-size:.85rem; font-weight:300; }
+
+/* about dev */
+.dev-box { display:flex; gap:32px; align-items:center; flex-wrap:wrap; background:rgba(255,255,255,.022); border:1px solid var(--gold-border); border-radius:var(--radius-lg); padding:40px; margin-top:40px; }
+.dev-avatar { width:88px; height:88px; border-radius:50%; background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:1.9rem; font-weight:700; color:var(--bg-solid); flex-shrink:0; }
+.dev-box h4 { font-size:1.2rem; margin-bottom:4px; }
+.dev-box .role { color:var(--gold); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px; }
+.dev-box p { color:var(--grey-light); font-size:.88rem; font-weight:300; max-width:520px; }
+.dev-links { display:flex; gap:14px; margin-top:16px; flex-wrap:wrap; }
+.dev-links a { font-size:.8rem; border:1px solid var(--gold-border); padding:9px 18px; border-radius:var(--radius); transition:all .25s; }
+.dev-links a:hover { background:var(--gold-subtle); border-color:var(--gold); }
+
+/* cta */
+.cta-section { text-align:center; position:relative; overflow:hidden; }
+.cta-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,.08), transparent 65%); }
+.cta-section > * { position:relative; z-index:1; }
+.btn-gold { background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light)); color:var(--bg-solid); padding:16px 38px; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:var(--radius); display:inline-block; transition:transform .3s, box-shadow .3s; box-shadow:0 6px 28px rgba(201,168,76,.3); }
+.btn-gold:hover { transform:translateY(-3px); box-shadow:0 16px 44px rgba(201,168,76,.5); color:var(--bg-solid); }
+.btn-line { border:1px solid var(--gold-border); color:var(--gold); padding:16px 38px; font-size:.8rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; border-radius:var(--radius); display:inline-block; transition:all .3s; }
+.btn-line:hover { background:var(--gold-subtle); border-color:var(--gold); }
+.cta-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:32px; }
+
+footer { background:#040402; border-top:1px solid var(--gold-border); padding:44px 6%; text-align:center; }
+footer p { color:var(--grey); font-size:.82rem; }
+footer a { color:var(--gold); }
+
+.reveal { opacity:0; transform:translateY(30px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .gold-text { opacity:1 !important; transform:none !important; transition:none !important; animation:none !important; }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <span class="logo-sq"><span class="sq-letter">SQ</span><span class="sq-dot"></span></span>
+  <a class="nav-back" href="https://www.sqwebsites.co.uk" target="_blank" rel="noopener"><i class="bi bi-arrow-left"></i> Back to SQ Website</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge reveal"><i class="bi bi-briefcase"></i>&nbsp; Case Study</div>
+    <h1 class="reveal">Lexent Law Chamber — <span class="gold-text">Built by SQ Website</span></h1>
+    <p class="hero-sub reveal">A fully regulated-industry-ready website for a UK immigration &amp; asylum advice practice, designed and developed end-to-end by Mohammed Qaim Abbas.</p>
+
+    <div class="hero-meta reveal">
+      <div class="meta-item"><div class="meta-label">Client</div><div class="meta-value">Lexent Law Chamber</div></div>
+      <div class="meta-item"><div class="meta-label">Industry</div><div class="meta-value">Immigration &amp; Asylum Law</div></div>
+      <div class="meta-item"><div class="meta-label">Scope</div><div class="meta-value">22-page multi-page site</div></div>
+      <div class="meta-item"><div class="meta-label">Domain</div><div class="meta-value">lexentlawchamber.com</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW -->
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="site-preview reveal">
+      <div class="preview-chrome"><span></span><span></span><span></span></div>
+      <div class="preview-body">
+        <div class="preview-logo">
+          <span class="name">Lexent</span>
+          <span class="sub">Immigration &amp; Asylum Advisers</span>
+        </div>
+        <h3>Trusted immigration &amp; asylum advice, when it matters most.</h3>
+        <p>IAA-regulated advice for individuals and families across England &amp; Wales — asylum claims, appeals, visas and settlement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="section-bg2">
+  <div class="container">
+    <div class="eyebrow reveal">The Brief</div>
+    <h2 class="s-title reveal">A trust-sensitive site for a<br><span class="gold-text">regulated legal practice</span></h2>
+    <p class="s-body reveal">Lexent Law Chamber needed a website that could do two things at once: read as immediately credible to people navigating one of the most stressful processes in their lives, and perform seriously as an acquisition channel — organic search, Google Ads, and word of mouth all needed to land somewhere polished. Every design and content decision was made with that tension in mind.</p>
+
+    <div class="grid-3">
+      <div class="feature-card reveal">
+        <div class="icon"><i class="bi bi-shield-check"></i></div>
+        <h4>Trust &amp; Compliance First</h4>
+        <p>Regulator status, complaints procedure, privacy/cookie/terms pages, and a disclaimer footer built in from day one — not bolted on later.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon"><i class="bi bi-graph-up-arrow"></i></div>
+        <h4>SEO Built on Real Research</h4>
+        <p>Competitive positioning grounded in the Solicitors Regulation Authority's own published thematic review and Chambers/Legal 500 market data — not invented claims.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon"><i class="bi bi-phone"></i></div>
+        <h4>Mobile-First, Always</h4>
+        <p>Hero layout, navigation and CTAs re-ordered specifically for phone visitors — where most enquiries for a practice like this actually originate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WAS BUILT -->
+<section>
+  <div class="container">
+    <div class="eyebrow reveal">What Was Built</div>
+    <h2 class="s-title reveal">Every detail, <span class="gold-text">custom-built</span></h2>
+    <p class="s-body reveal">No page builder, no theme. Every line of HTML, CSS and JavaScript was hand-written to this client's brief.</p>
+
+    <div class="grid-2">
+      <div class="feature-card reveal">
+        <div class="icon"><i class="bi bi-magic"></i></div>
+        <h4>Custom Animated Branding</h4>
+        <p>A hand-coded scales-of-justice icon that gently sways beside the wordmark, a gold-shimmer text treatment, and a typewriter-effect headline that cycles through persuasive variants — all built from scratch in vanilla JS, with zero dependencies.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon"><i class="bi bi-search"></i></div>
+        <h4>Real, Cited SEO Strategy</h4>
+        <p>Structured data (LegalService + FAQPage schema), a full XML sitemap, and on-page copy shaped by genuine market research into the top UK immigration firms — not fabricated reviews or invented statistics.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon"><i class="bi bi-globe2"></i></div>
+        <h4>Custom Domain Migration</h4>
+        <p>Migrated the entire site from a GitHub Pages subdomain to the client's own registered domain — every canonical URL, Open Graph tag, and structured data reference updated in one clean pass.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon"><i class="bi bi-google"></i></div>
+        <h4>Ad-Platform Ready</h4>
+        <p>Google Ads conversion tracking installed site-wide, plus ready-to-use Responsive Search Ad headlines, descriptions and sitelinks — the client could launch a campaign the same day.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon"><i class="bi bi-universal-access"></i></div>
+        <h4>Accessible by Default</h4>
+        <p>Every animation on the site — the typewriter, the scroll-reveal system, the ambient glows — checks <code>prefers-reduced-motion</code> and disables itself for visitors who need that.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon"><i class="bi bi-translate"></i></div>
+        <h4>Genuinely Useful Content</h4>
+        <p>A free library of in-depth, plain-English immigration &amp; asylum guides — real answers to real questions, not thin SEO filler.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section-bg2">
+  <div class="container">
+    <div class="eyebrow reveal">How It Came Together</div>
+    <h2 class="s-title reveal">Iterative, hands-on <span class="gold-text">delivery</span></h2>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body"><h4>Brand &amp; Rebuild</h4><p>Full rebrand and rebuild of the site's identity, navy-and-gold visual system, and every core page from the ground up.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body"><h4>Content Library</h4><p>Ten in-depth immigration &amp; asylum guides written and published, covering the questions clients actually search for.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body"><h4>Animation &amp; Polish</h4><p>Custom logo animation, typewriter headline, scroll-reveal system and hover interactions layered on across every page.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body"><h4>Go-Live</h4><p>Custom domain connected, Google Ads tag installed, sitemap finalised, and the site handed over fully live and ready for its first campaign.</p></div>
+      </div>
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>"I wanted a site that looked like a firm twice its size, without a single fabricated review or inflated claim on it. That's exactly what I got."</p>
+      <cite>— Client brief, Lexent Law Chamber</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT DEV -->
+<section>
+  <div class="container">
+    <div class="eyebrow reveal">Built By</div>
+    <h2 class="s-title reveal">Mohammed Qaim Abbas — <span class="gold-text">SQ Website</span></h2>
+    <div class="dev-box reveal">
+      <div class="dev-avatar">MQA</div>
+      <div>
+        <h4>Mohammed Qaim Abbas</h4>
+        <div class="role">Founder &amp; Lead Developer, SQ Website</div>
+        <p>Mohammed designed and built the entire Lexent Law Chamber website personally — from information architecture and copywriting through to every animation and line of code — with no outsourcing and no template shortcuts. Based in Manchester, UK.</p>
+        <div class="dev-links">
+          <a href="https://www.sqwebsites.co.uk" target="_blank" rel="noopener"><i class="bi bi-globe2 me-1"></i> sqwebsites.co.uk</a>
+          <a href="https://wa.me/447919978462" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-1"></i> WhatsApp</a>
+          <a href="https://www.lexentlawchamber.com/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right me-1"></i> View Live Site</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="eyebrow justify-content-center reveal" style="display:flex;">Want a Site Like This?</div>
+    <h2 class="s-title reveal">Let's Build Yours <span class="gold-text">Next</span></h2>
+    <p class="s-body mx-auto reveal" style="max-width:520px;margin-left:auto;margin-right:auto;">Whether it's a regulated practice, a local business, or something entirely new — SQ Website builds it custom, from scratch, every time.</p>
+    <div class="cta-actions reveal">
+      <a href="https://www.sqwebsites.co.uk#booking" target="_blank" rel="noopener" class="btn-gold">Book a Free Consultation</a>
+      <a href="https://wa.me/447919978462?text=Hi%20Mohammed%2C%20I%20saw%20the%20Lexent%20Law%20Chamber%20case%20study." target="_blank" rel="noopener" class="btn-line"><i class="bi bi-whatsapp me-2"></i>WhatsApp Mohammed</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 SQ Website. Case study for Lexent Law Chamber, built by <a href="https://www.sqwebsites.co.uk" target="_blank" rel="noopener">Mohammed Qaim Abbas</a>.</p>
+</footer>
+
+<script>
+var revealObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+</script>
+</body>
+</html>
