@@ -3,8 +3,8 @@
 A responsive, multi-page static website template for an immigration and
 asylum advice practice, built with plain HTML/CSS/JS (no build step, no
 framework). **"Lexent Law Chamber" is a placeholder brand name** — swap it
-out for your real practice name before launch, along with your actual IAA
-registration details.
+out for your real practice name before launch, along with your actual
+regulatory registration details.
 
 ## Pages
 
@@ -29,12 +29,12 @@ registration details.
 ## Regulatory note
 
 Giving immigration advice in the UK is a regulated activity. This template
-positions the practice as operating within the **Immigration Advice
-Authority (IAA)** framework rather than as a firm of solicitors — do not
-publish this site claiming SRA authorisation or use the protected title
-"solicitor" for advisers who are not, in fact, qualified solicitors.
-Replace every placeholder registration reference with your practice's real
-IAA registration number(s) and accreditation level(s) before publishing.
+positions the practice as an immigration advice provider rather than as a
+firm of solicitors — do not publish this site claiming SRA authorisation or
+use the protected title "solicitor" for advisers who are not, in fact,
+qualified solicitors. Replace every placeholder registration reference with
+your practice's real registration number(s) and accreditation level(s)
+before publishing.
 
 ## Before you launch — replace these placeholders
 
@@ -44,7 +44,7 @@ IAA registration number(s) and accreditation level(s) before publishing.
 | Phone number | All pages (topbar, header, footer, `tel:` links) | `+44 20 7946 0958` *(Ofcom's reserved fictional UK number — safe placeholder, but not real)* |
 | WhatsApp number | All pages (`wa.me` links) | `442079460958` |
 | Email address | All pages (`mailto:` links) | `info@lexentlawchamber.example` *(`.example` is a reserved placeholder domain)* |
-| IAA registration number(s) | `about.html`, `complaints-procedure.html` | Not yet included — add once confirmed |
+| Regulator registration number(s) | `about.html`, `complaints-procedure.html` | Not yet included — add once confirmed |
 | Team member names/photos | `about.html` | `Adviser Name` placeholders |
 | Services & copy | `index.html`, `practice-areas.html` | Immigration &amp; asylum starter set |
 | Google Analytics / tracking | not included | Add your own if needed |
@@ -95,6 +95,6 @@ For GitHub Pages: Settings → Pages → deploy from the `main` branch, root fol
 
 The included disclaimer text ("does not constitute immigration advice...")
 is a common convention for regulated advice websites, **not a substitute
-for advice from a qualified professional** on what your regulator (the IAA)
-requires. Review the IAA's rules on adviser advertising and website
+for advice from a qualified professional** on what your regulator requires.
+Review your regulator's rules on adviser advertising and website
 disclaimers before publishing.
