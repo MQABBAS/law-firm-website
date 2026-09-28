@@ -44,7 +44,7 @@ before publishing.
 | Phone number | All pages (topbar, header, footer, `tel:` links) | `+44 20 7946 0958` *(Ofcom's reserved fictional UK number — safe placeholder, but not real)* |
 | WhatsApp number | All pages (`wa.me` links) | `442079460958` |
 | Email address | All pages (`mailto:` links) | `info@lexentlawchamber.example` *(`.example` is a reserved placeholder domain)* |
-| Regulator registration number(s) | `about.html`, `complaints-procedure.html` | Not yet included — add once confirmed |
+| Regulator registration number(s) | `about.html`, `complaints-procedure.html` | Included — IAA registrations P060908 and P066419 |
 | Team member names/photos | `about.html` | `Adviser Name` placeholders |
 | Services & copy | `index.html`, `practice-areas.html` | Immigration &amp; asylum starter set |
 | Google Analytics / tracking | not included | Add your own if needed |
